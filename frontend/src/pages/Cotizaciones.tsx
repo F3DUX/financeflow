@@ -219,10 +219,10 @@ export function Cotizaciones() {
                         backdropFilter: 'blur(12px)',
                       }}
                       labelStyle={{ color: 'rgba(255,255,255,0.6)', fontSize: 12 }}
-                      formatter={(value: number) => [
-                        formatARSCompact(value),
-                        chartType === 'blue' ? 'Dólar Blue' : 'Dólar Oficial',
-                      ]}
+                      formatter={(value: any) => [
+          formatARSCompact(Number(value || 0)),
+          chartType === 'blue' ? 'Dólar Blue' : 'Dólar Oficial',
+        ]}
                     />
                     <Area
                       type="monotone"
