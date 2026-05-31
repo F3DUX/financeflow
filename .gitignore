@@ -1,0 +1,41 @@
+# ─── Node ───────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ─── Build Output ───────────────────────
+dist/
+build/
+*.tsbuildinfo
+
+# ─── Environment ────────────────────────
+.env
+.env.local
+.env.production
+.env.*.local
+
+# ─── IDE / Editor ───────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# ─── Database ───────────────────────────
+backend/prisma/dev.db
+backend/prisma/dev.db-journal
+
+# ─── Logs ───────────────────────────────
+logs/
+*.log
+
+# ─── Prisma (generated) ─────────────────
+backend/prisma/generated/
+
+# ─── Vite / Vercel ─────────────────────
+frontend/dist/
+.cache/

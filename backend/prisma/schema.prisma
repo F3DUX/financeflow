@@ -1,0 +1,91 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  expenses  Expense[]
+  incomes   Income[]
+  services  Service[]
+  budgets   Budget[]
+  goals     SavingsGoal[]
+}
+
+model Expense {
+  id          String   @id @default(cuid())
+  amount      Float
+  category    String
+  priority    String   @default("medium")
+  date        DateTime
+  description String
+  tags        String  @default("[]")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+}
+
+model Income {
+  id          String   @id @default(cuid())
+  amount      Float
+  date        DateTime
+  category    String
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+}
+
+model Service {
+  id        String   @id @default(cuid())
+  name      String
+  category  String
+  amount    Float
+  dueDate   Int
+  frequency String   @default("monthly")
+  status    String   @default("active")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+}
+
+model Budget {
+  id       String @id @default(cuid())
+  category String
+  amount   Float
+  spent    Float  @default(0)
+  month    String
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+}
+
+model SavingsGoal {
+  id            String   @id @default(cuid())
+  name          String
+  targetAmount  Float
+  currentAmount Float   @default(0)
+  icon          String   @default("🎯")
+  deadline      DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+}
