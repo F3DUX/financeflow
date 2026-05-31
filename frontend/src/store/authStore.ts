@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import type { User } from '@/types'
 import { useAppStore } from './appStore'
 
-const API_URL = import.meta.env.VITE_API_URL || 'https://financeflow-backendd.onrender.com/api'
+const API_URL = import.meta.env.VITE_API_URL || 'https://financeflow-backendd.onrender.com'
 
 interface AuthState {
   user: User | null
